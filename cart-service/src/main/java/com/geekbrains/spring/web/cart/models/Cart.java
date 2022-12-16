@@ -85,13 +85,6 @@ public class Cart {
         another.clear();
     }
 
-    public List<CartItem> getItems() {
-        return items;
-    }
-
-    public void setItems(List<CartItem> items) {
-        this.items = items;
-    }
 
 
 }
