@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+
 public class CartConverter {
     public CartDto modelToDto(Cart cart) {
         List<CartItemDto> cartItemDtos = cart.getItems().stream().map(it ->
