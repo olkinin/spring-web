@@ -2,11 +2,14 @@ package com.geekbrains.spring.web.api.core;
 
 import java.util.List;
 
+import java.math.BigDecimal;
+
+
 public class OrderDto {
     private Long id;
     private String username;
     private List<OrderItemDto> items;
-    private Integer totalPrice;
+    private BigDecimal totalPrice;
     private String address;
     private String phone;
 
@@ -34,11 +37,11 @@ public class OrderDto {
         this.items = items;
     }
 
-    public Integer getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -61,7 +64,7 @@ public class OrderDto {
     public OrderDto() {
     }
 
-    public OrderDto(Long id, String username, List<OrderItemDto> items, Integer totalPrice, String address, String phone) {
+    public OrderDto(Long id, String username, List<OrderItemDto> items, BigDecimal totalPrice, String address, String phone) {
         this.id = id;
         this.username = username;
         this.items = items;

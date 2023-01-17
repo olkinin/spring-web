@@ -3,14 +3,16 @@ package com.geekbrains.spring.web.cart.models;
 import com.geekbrains.spring.web.api.core.ProductDto;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Data
 public class Cart {
+
     private List<CartItem> items;
-    private int totalPrice;
+    private BigDecimal totalPrice;
 
     public Cart() {
         this.items = new ArrayList<>();
@@ -57,17 +59,17 @@ public class Cart {
 
     public void clear() {
         items.clear();
-        totalPrice = 0;
+        totalPrice = BigDecimal.ZERO;
     }
 
     private void recalculate() {
-        totalPrice = 0;
+        totalPrice = BigDecimal.ZERO;
         for (CartItem o : items) {
-            totalPrice += o.getPrice();
+            totalPrice = totalPrice.add(o.getPrice());
         }
     }
 
-    public void merge(Cart another) {
+    public void merge(com.geekbrains.spring.web.cart.models.Cart another) {
         for (CartItem anotherItem : another.items) {
             boolean merged = false;
             for (CartItem myItem : items) {
@@ -84,7 +86,4 @@ public class Cart {
         recalculate();
         another.clear();
     }
-
-
-
 }

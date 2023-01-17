@@ -5,66 +5,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem {
-    private Long productId;
-    private String productTitle;
-    private int quantity;
-    private int pricePerProduct;
-    private int price;
 
-    public CartItem(ProductDto productDto) {
-        this.productId = productDto.getId();
-        this.productTitle = productDto.getTitle();
-        this.quantity = 1;
-        this.pricePerProduct = productDto.getPrice();
-        this.price = productDto.getPrice();
-    }
+        private Long productId;
+        private String productTitle;
+        private int quantity;
+        private BigDecimal pricePerProduct;
+        private BigDecimal price;
 
-    public void changeQuantity(int delta) {
-        this.quantity += delta;
-        this.price = this.quantity * this.pricePerProduct;
-    }
+        public CartItem(ProductDto productDto) {
+            this.productId = productDto.getId();
+            this.productTitle = productDto.getTitle();
+            this.quantity = 1;
+            this.pricePerProduct = productDto.getPrice();
+            this.price = productDto.getPrice();
+        }
 
-    public Long getProductId() {
-        return productId;
+        public void changeQuantity(int delta) {
+            this.quantity += delta;
+            this.price = this.pricePerProduct.multiply(BigDecimal.valueOf(this.quantity));
+        }
     }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
-    public String getProductTitle() {
-        return productTitle;
-    }
-
-    public void setProductTitle(String productTitle) {
-        this.productTitle = productTitle;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getPricePerProduct() {
-        return pricePerProduct;
-    }
-
-    public void setPricePerProduct(int pricePerProduct) {
-        this.pricePerProduct = pricePerProduct;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-}
